@@ -33,3 +33,51 @@ class RotiManis extends ToppingFilling {
         System.out.println("");
     }
 }
+class RotiManisVarian1 extends RotiManis {
+    RotiManisVarian1(int pesanan) {
+        super(pesanan);
+        super.setHargaKeju(5, pesanan);
+        super.setHargaCoklat(5, pesanan);
+        super.setHargaCoklat(5, pesanan);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("+---------------------+----------------------+");
+        System.out.printf("| %-19s | %-20s |\n", "Jenis Roti", "Roti manis varian 1");
+        System.out.printf("| %-19s | %-20s |\n", "Filling & topping", "Keju, coklat, coklat");
+        super.info();
+    }   
+}
+
+class RotiManisVarian2 extends RotiManis {
+    RotiManisVarian2(int pesanan) {
+        super(pesanan);
+        super.setHargaRedBean(10, pesanan);
+        super.setHargaVanilla(5, pesanan);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("+---------------------+----------------------+");
+        System.out.printf("| %-19s | %-20s |\n", "Jenis Roti", "Roti manis varian 2");
+        System.out.printf("| %-19s | %-20s |\n", "Filling & topping", "Red bean, vanilla");
+        super.info();
+    }
+}
+
+class RotiManisVarian3 extends RotiManis {
+    RotiManisVarian3(int pesanan) {
+        super(pesanan);
+        super.setHargaKeju(10, pesanan);
+        super.setHargaSosis(10, pesanan);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("+---------------------+----------------------+");
+        System.out.printf("| %-19s | %-20s |\n", "Jenis Roti", "Roti manis varian 3");
+        System.out.printf("| %-19s | %-20s |\n", "Filling & topping", "Keju, sosis");
+        super.info();
+    }
+}
