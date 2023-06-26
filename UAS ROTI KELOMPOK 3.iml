@@ -1,11 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-</module>
+}
+class Pizza extends ToppingFilling {
+    private int kebutuhanAdonan; // kebutuhan adonan 1 kali pesanan
+    private int adonan;
+    private int pesanan;
+
+    // set kebutuhan adonan sekali pesanan dan sisa adonan
+    Pizza(int pesanan) {
+        this.kebutuhanAdonan = 190 * pesanan; // kebutuhan adonan tiap roti
+        this.pesanan = pesanan;
+    }
+
+    public void tambahAdonan() {
+        while (kebutuhanAdonan > adonan) {
+            super.setTambahAdonan(1000, 100, 100, 20, 200, 180, 50, 300);
+            adonan = super.getBeratBahan();
+        }
+    }
+
+    public int getModal(){
+        return super.getHargaBahan() + super.getHargaTopping();
+    }
+
+    public void info() {
+        System.out.printf("| %-19s | %-20s |\n", "Jumlah pesanan", pesanan);
+        System.out.printf("| %-19s | %-20s |\n", "Harga all bahan", super.getHargaBahan());
+        System.out.printf("| %-19s | %-20s |\n", "Harga all topping", super.getHargaTopping());
+        System.out.printf("| %-19s | %-20s |\n", "Jumlah adonan", super.getBeratBahan());
+        System.out.printf("| %-19s | %-20s |\n", "Kebutuhan adonan", kebutuhanAdonan);
+        System.out.printf("| %-19s | %-20s |\n", "Harga modal /roti", getModal() / pesanan);
+        System.out.printf("| %-19s | %-20s |\n", "Harga jual /roti",
+                String.format("%.2f", (getModal() / pesanan) * 1.4));
+        System.out.println("+---------------------+----------------------+");
+        System.out.println("");
+    }
+}
+
+class PizzaVarian1 extends Pizza {
+    PizzaVarian1(int pesanan) {
+        super(pesanan);
+        super.setHargaKeju(30, pesanan);
+        super.setHargaSosis(50, pesanan);
+        super.setHargaSmokedBeef(50, pesanan);
+        super.setHargaBawangBombay(30, pesanan);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("+---------------------+----------------------+");
+        System.out.printf("| %-19s | %-20s |\n", "Jenis Roti", "Pizza");
+        System.out.printf("| %-19s | %-20s |\n", "Filling & topping", "Original");
+        super.info();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("\u001B[32m");
+        RotiManisVarian1 rotiManisVarian1 = new RotiManisVarian1(50);
+        rotiManisVarian1.tambahAdonan();
+        rotiManisVarian1.info();
+
+        RotiManisVarian2 rotiManisVarian2 = new RotiManisVarian2(100);
+        rotiManisVarian2.tambahAdonan();
+        rotiManisVarian2.info();
+
+        RotiManisVarian3 rotiManisVarian3 = new RotiManisVarian3(70);
+        rotiManisVarian3.tambahAdonan();
+        rotiManisVarian3.info();
+
+        RotiTawarVarian1 rotiTawarVarian1 = new RotiTawarVarian1(20);
+        rotiTawarVarian1.tambahAdonan();
+        rotiTawarVarian1.info();
+
+        RotiTawarVarian2 rotiTawarVarian2 = new RotiTawarVarian2(20);
+        rotiTawarVarian2.tambahAdonan();
+        rotiTawarVarian2.info();
+
+        PizzaVarian1 pizzaVarian1 = new PizzaVarian1(10);
+        pizzaVarian1.tambahAdonan();
+        pizzaVarian1.info();
+    }
+}
