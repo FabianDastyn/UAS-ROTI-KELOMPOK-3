@@ -81,3 +81,69 @@ class RotiManisVarian3 extends RotiManis {
         super.info();
     }
 }
+class RotiTawar extends ToppingFilling {
+    private int kebutuhanAdonan; // kebutuhan adonan 1 kali pesanan
+    private int adonan;
+    private int pesanan;
+
+    // set kebutuhan adonan sekali pesanan dan sisa adonan
+    RotiTawar(int pesanan) {
+        this.kebutuhanAdonan = 400 * pesanan; // kebutuhan adonan tiap roti
+        this.pesanan = pesanan;
+    }
+
+    public void tambahAdonan() {
+        while (kebutuhanAdonan > adonan) {
+            super.setTambahAdonan(1000, 125, 100, 20, 250, 200, 70, 300);
+            adonan = super.getBeratBahan();
+        }
+    }
+
+    public int getModal(){
+        return super.getHargaBahan() + super.getHargaTopping();
+    }
+
+    public void info() {
+        System.out.printf("| %-19s | %-20s |\n", "Jumlah pesanan", pesanan);
+        System.out.printf("| %-19s | %-20s |\n", "Harga all bahan", super.getHargaBahan());
+        System.out.printf("| %-19s | %-20s |\n", "Harga all topping", super.getHargaTopping());
+        System.out.printf("| %-19s | %-20s |\n", "Jumlah adonan", super.getBeratBahan());
+        System.out.printf("| %-19s | %-20s |\n", "Kebutuhan adonan", kebutuhanAdonan);
+        System.out.printf("| %-19s | %-20s |\n", "Harga modal /roti", getModal() / pesanan);
+        System.out.printf("| %-19s | %-20s |\n", "Harga jual /roti",
+                String.format("%.2f", (getModal() / pesanan) * 1.4));
+        System.out.println("+---------------------+----------------------+");
+        System.out.println("");
+    }
+}
+
+class RotiTawarVarian1 extends RotiTawar {
+    RotiTawarVarian1(int pesanan) {
+        super(pesanan);
+        super.setHargaCoklat(80, pesanan);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("+---------------------+----------------------+");
+        System.out.printf("| %-19s | %-20s |\n", "Jenis Roti", "Roti tawar varian 1");
+        System.out.printf("| %-19s | %-20s |\n", "Filling & topping", "Coklat");
+        super.info();
+    }
+}
+
+class RotiTawarVarian2 extends RotiTawar {
+    RotiTawarVarian2(int pesanan) {
+        super(pesanan);
+        super.setHargaKeju(80, pesanan);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("+---------------------+----------------------+");
+        System.out.printf("| %-19s | %-20s |\n", "Jenis Roti", "Roti tawar varian 2");
+        System.out.printf("| %-19s | %-20s |\n", "Filling & topping", "Keju");
+        super.info();
+    }
+}
+
