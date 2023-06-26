@@ -81,7 +81,7 @@ class RotiManisVarian3 extends RotiManis {
         super.info();
     }
 }
-}
+
 class Pizza extends ToppingFilling {
     private int kebutuhanAdonan; // kebutuhan adonan 1 kali pesanan
     private int adonan;
